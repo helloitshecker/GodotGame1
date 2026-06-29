@@ -12,6 +12,7 @@ height = 1.6973877
 [node name="ControllerTp" type="CharacterBody3D" unique_id=1344336915]
 script = ExtResource("1_s1exi")
 walk_speed = 1.55
+run_speed = 4.0
 jump_velocity = 4.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=766691175]

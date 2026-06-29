@@ -10,15 +10,19 @@ config_version=5
 
 [application]
 
-config/name="New Game Project"
+config/name="GodotGame1"
 run/main_scene="uid://crwv82npj7bvy"
 config/features=PackedStringArray("4.7", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/image="uid://c7vcyd6br50"
+config/icon="uid://c7vcyd6br50"
 
 [display]
 
-window/size/viewport_width=1720
-window/size/viewport_height=880
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=4
+window/size/resizable=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
@@ -93,3 +97,4 @@ escape={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+anti_aliasing/quality/screen_space_aa=1

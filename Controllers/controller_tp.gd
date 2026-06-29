@@ -36,10 +36,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		spring_arm.rotation.x = pitch
 		
 	elif event.is_action_pressed("escape"):
-		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		else:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		get_tree().quit()
 
 func _handle_gamepad_camera(delta: float) -> void:
 	var look := Input.get_vector("look_left", "look_right", "look_forward", "look_backward")
