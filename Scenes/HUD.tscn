@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://eo30kruldshw"]
+
+[ext_resource type="Script" uid="uid://bbmhjn5ty1yid" path="res://Scenes/FPS_Counter.gd" id="1_sd512"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1372348273]
+
+[node name="Panel" type="Panel" parent="." unique_id=934440234]
+offset_left = 9.0
+offset_top = 7.0
+offset_right = 173.0
+offset_bottom = 46.0
+
+[node name="Label" type="Label" parent="Panel" unique_id=368402249]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 46.0
+offset_top = 7.0
+offset_right = -40.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "FPS"
+vertical_alignment = 1
+text_direction = 1
+script = ExtResource("1_sd512")

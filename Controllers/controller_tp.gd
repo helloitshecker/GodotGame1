@@ -7,6 +7,7 @@ extends CharacterBody3D
 @export var jump_velocity: float = 3.0
 @export var stick_sensitivity: float = 3.0
 @export var stick_deadzone: float = 0.15
+@export var accleration: float = 15.0
 
 @onready var spring_arm: SpringArm3D = $CameraPivot/Spring
 @onready var anim: = $F_1/AnimationPlayer
@@ -33,6 +34,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera_pivot.rotate_y(-event.relative.x * sensitivity)
 		pitch = clamp(pitch + -event.relative.y * sensitivity, deg_to_rad(-60), deg_to_rad(45))
 		spring_arm.rotation.x = pitch
+		
+	elif event.is_action_pressed("escape"):
+		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _handle_gamepad_camera(delta: float) -> void:
 	var look := Input.get_vector("look_left", "look_right", "look_forward", "look_backward")
@@ -57,15 +64,16 @@ func _physics_process(delta: float) -> void:
 	var speed := run_speed if sprinting else walk_speed
 	
 	var target_blend := 0.0
+	var target_velocity := direction * speed
 	if direction.length() > 0.01:
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
+		velocity.x = move_toward(velocity.x, target_velocity.x, accleration * delta)
+		velocity.z = move_toward(velocity.z, target_velocity.z, accleration * delta)
 		var target_yaw := atan2(direction.x, direction.z)
 		mesh.rotation.y = lerp_angle(mesh.rotation.y, target_yaw, turn_speed * delta)
 		target_blend = RUN_BLEND if sprinting else WALK_BLEND
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		velocity.z = move_toward(velocity.z, 0, speed)
+		velocity.x = move_toward(velocity.x, target_velocity.x, accleration * delta)
+		velocity.z = move_toward(velocity.z, target_velocity.z, accleration * delta)
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity

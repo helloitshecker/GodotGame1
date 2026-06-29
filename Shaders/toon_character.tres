@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cbotuu6ymftg7"]
+
+[ext_resource type="Material" uid="uid://bhjm7ph8j5kph" path="res://Shaders/toon_outline.tres" id="1_5srr3"]
+[ext_resource type="Shader" uid="uid://cbh6uu072x217" path="res://Shaders/toon_character.gdshader" id="1_oiq8s"]
+[ext_resource type="Texture2D" uid="uid://cg1gxntrg6pm" path="res://Characters/F_1_Atlas_00001.png" id="2_qbnax"]
+
+[resource]
+render_priority = 0
+next_pass = ExtResource("1_5srr3")
+shader = ExtResource("1_oiq8s")
+shader_parameter/albedo_tex = ExtResource("2_qbnax")
+shader_parameter/albedo_tint = Color(1, 1, 1, 1)
+shader_parameter/shadow_threshold = 0.602000028595
+shader_parameter/shadow_smoothness = 0.03
+shader_parameter/shadow_color = Color(0.55, 0.5, 0.65, 1)
+shader_parameter/specular_glossiness = 80.210003762475
+shader_parameter/specular_size = 0.72800003458
+shader_parameter/specular_smoothness = 0.02
+shader_parameter/specular_color = Color(1, 1, 1, 1)
+shader_parameter/rim_power = 1.4810000465975
+shader_parameter/rim_amount = 0.6
+shader_parameter/rim_smoothness = 0.08
+shader_parameter/rim_color = Color(1, 1, 1, 1)

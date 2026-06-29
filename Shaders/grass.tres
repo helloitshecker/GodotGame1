@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://c7bvaw6h4mu14"]
+
+[ext_resource type="Shader" uid="uid://dldasr1k0kysc" path="res://Shaders/grass.gdshader" id="1_evgv8"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_evgv8")
+shader_parameter/root_color = Color(0.1, 0.28, 0.08, 1)
+shader_parameter/tip_color = Color(0.45, 0.72, 0.28, 1)
+shader_parameter/wind_strength = 0.18
+shader_parameter/wind_speed = 1.6
+shader_parameter/wind_dir = Vector2(1, 0.4)
+shader_parameter/stiffness = 2.0
+shader_parameter/ao_strength = 0.5

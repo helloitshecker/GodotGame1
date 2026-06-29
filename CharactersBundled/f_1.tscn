@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cxilfds01kwh"]
 
 [ext_resource type="PackedScene" uid="uid://cpd75e1yas0hp" path="res://Characters/F_1.glb" id="1_7fa6w"]
+[ext_resource type="Material" uid="uid://cbotuu6ymftg7" path="res://Shaders/toon_character.tres" id="2_c8q2b"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c8q2b"]
 animation = &"Idle"
@@ -151,6 +152,9 @@ bones/60/rotation = Quaternion(-0.11907355, 0.8016556, 0.58559394, -0.015799597)
 bones/61/rotation = Quaternion(-0.88226306, -0.03884604, 0.07947035, 0.4623716)
 bones/62/rotation = Quaternion(0.2565993, -0.0337047, -0.025016373, 0.96560603)
 bones/63/rotation = Quaternion(0.33083636, 0.045830574, -0.018425375, 0.94239455)
+
+[node name="Character" parent="Idle/Skeleton3D" index="0" unique_id=591449692]
+surface_material_override/0 = ExtResource("2_c8q2b")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=475132166]
 root_motion_track = NodePath("Idle/Skeleton3D:mixamorig_Spine2")

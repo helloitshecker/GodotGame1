@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://crwv82npj7bvy"]
 
 [ext_resource type="PackedScene" uid="uid://dv432fo6l6mju" path="res://Controllers/Controller_TP.tscn" id="1_b5ayd"]
+[ext_resource type="Shader" uid="uid://ctm47ww3br6we" path="res://Shaders/Grid.gdshader" id="2_5lt6y"]
+[ext_resource type="PackedScene" uid="uid://eo30kruldshw" path="res://Scenes/HUD.tscn" id="3_8k7wh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_b5ayd"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -12,12 +14,44 @@ sky_material = SubResource("ProceduralSkyMaterial_b5ayd")
 [sub_resource type="Environment" id="Environment_8k7wh"]
 background_mode = 2
 sky = SubResource("Sky_5lt6y")
+tonemap_mode = 3
+ssao_enabled = true
 glow_enabled = true
+glow_normalized = true
+glow_bloom = 0.1
+fog_enabled = true
+fog_light_color = Color(0.4412183, 0.56277037, 0.69390017, 1)
+fog_sun_scatter = 1.0
+fog_density = 0.005
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_jqrdv"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_b5ayd"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b5ayd"]
+render_priority = 0
+shader = ExtResource("2_5lt6y")
+shader_parameter/cell_size = 1.0
+shader_parameter/line_width = 1.5
+shader_parameter/line_color = Color(0.6, 0.6, 0.6, 1)
+shader_parameter/bg_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/fade_distance = 40.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8k7wh"]
 size = Vector3(2, 0.001, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jqrdv"]
+size = Vector3(0.50146484, 8.538757, 3.9310913)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jqrdv"]
+render_priority = 0
+shader = ExtResource("2_5lt6y")
+shader_parameter/cell_size = 1.0
+shader_parameter/line_width = 1.5
+shader_parameter/line_color = Color(0.6, 0.6, 0.6, 1)
+shader_parameter/bg_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/fade_distance = 40.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0f5h7"]
+size = Vector3(0.50146484, 8.538757, 3.9310913)
 
 [node name="TestScene" type="Node3D" unique_id=35820564]
 
@@ -35,7 +69,46 @@ shadow_enabled = true
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=113452625]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 mesh = SubResource("PlaneMesh_jqrdv")
+surface_material_override/0 = SubResource("ShaderMaterial_b5ayd")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1400854477]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=90513976]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
-shape = SubResource("BoxShape3D_b5ayd")
+shape = SubResource("BoxShape3D_8k7wh")
+
+[node name="CanvasLayer" parent="." unique_id=1372348273 instance=ExtResource("3_8k7wh")]
+
+[node name="Wall1" type="StaticBody3D" parent="." unique_id=1937871511]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.11380184)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall1" unique_id=1306822044]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7222304, 4.218602, 2.8367963)
+mesh = SubResource("BoxMesh_jqrdv")
+surface_material_override/0 = SubResource("ShaderMaterial_jqrdv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall1" unique_id=665626115]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7222304, 4.218602, 2.8367963)
+shape = SubResource("BoxShape3D_0f5h7")
+
+[node name="Wall2" type="StaticBody3D" parent="." unique_id=1626364760]
+transform = Transform3D(0.55250406, 0, -0.8335102, 0, 1, 0, 0.8335102, 0, 0.55250406, 0, 0, 7.479915)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall2" unique_id=1344656844]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7222304, 4.218602, 2.8367963)
+mesh = SubResource("BoxMesh_jqrdv")
+surface_material_override/0 = SubResource("ShaderMaterial_jqrdv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2" unique_id=1002644861]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7222304, 4.218602, 2.8367963)
+shape = SubResource("BoxShape3D_0f5h7")
+
+[node name="Wall3" type="StaticBody3D" parent="." unique_id=1430375767]
+transform = Transform3D(0.5558683, 0, 0.83127034, 0, 1, 0, -0.83127034, 0, 0.5558683, -6.6094513, 0, -5.1932445)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall3" unique_id=1196648208]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7222304, 4.218602, 2.8367963)
+mesh = SubResource("BoxMesh_jqrdv")
+surface_material_override/0 = SubResource("ShaderMaterial_jqrdv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall3" unique_id=143470062]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7222304, 4.218602, 2.8367963)
+shape = SubResource("BoxShape3D_0f5h7")
