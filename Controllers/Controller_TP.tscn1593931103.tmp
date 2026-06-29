@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dv432fo6l6mju"]
+
+[ext_resource type="Script" uid="uid://nwl3qhcwg4fa" path="res://Controllers/controller_tp.gd" id="1_s1exi"]
+[ext_resource type="PackedScene" uid="uid://cxilfds01kwh" path="res://CharactersBundled/f_1.tscn" id="1_tddq8"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jqrdv"]
+radius = 0.27294922
+height = 1.6973877
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_s1exi"]
+
+[node name="ControllerTp" type="CharacterBody3D" unique_id=1344336915]
+script = ExtResource("1_s1exi")
+sensitivity = null
+
+[node name="F_1" parent="." unique_id=1479517862 instance=ExtResource("1_tddq8")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=766691175]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8510132, 0)
+shape = SubResource("CapsuleShape3D_jqrdv")
+
+[node name="Spring" type="SpringArm3D" parent="." unique_id=2028977761]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.3047203, 1.6953855, -0.063189626)
+shape = SubResource("SphereShape3D_s1exi")
+
+[node name="Camera3D" type="Camera3D" parent="Spring" unique_id=1559955134]
